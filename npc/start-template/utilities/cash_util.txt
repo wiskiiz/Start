@@ -29,6 +29,7 @@ function	script	MyCash	{
 
 function	script	AddMyCash	{
 	#CASHPOINTS += getarg(0);
+	callfunc("MyCash",1);
 	return;
 }
 
