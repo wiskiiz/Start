@@ -32,8 +32,7 @@ prontera,112,61,4	script	หมีเล่นหวย	505,{
 	}
 	
 	if($buyerLottoCash$[.@i] == "-"){
-		callfunc("IsCashEnough",1,.@npcName$);
-		callfunc("UseMyCash",1);
+		callfunc("IsCashEnough",1,.@npcName$,1);
 		
 		$buyerLottoCash$[.@i] = strcharinfo(0);
 		
