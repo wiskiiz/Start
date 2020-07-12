@@ -245,12 +245,12 @@ function	script	MyZenySR	{
 	announce "คุณมี:    " + callfunc("F_InsertComma",Zeny) + " Zeny",bc_self,0xfcffa8;
 	return;
 }
-function	script	UseMyZenySR	{
+function	script	UseZenySR	{
 	Zeny -= getarg(0);
 	callfunc("MyZenySR",1);
 	return;
 }
-function	script	AddMyZenySR	{
+function	script	AddZenySR	{
 	Zeny += getarg(0);
 	callfunc("MyZenySR",2);
 	return;
@@ -386,7 +386,7 @@ function	script	Refiner	{
 		if(Zeny < callfunc("GetRefinePrice") && !.@isAutomatic)
 		{
 			callfunc("SetRefineCount",-1);
-			callfunc("AddMyZenySR",callfunc("GetRefinePrice"));
+			callfunc("AddZenySR",callfunc("GetRefinePrice"));
 			callfunc("Dispbottom","คุณโดนลดค่าตีบวกลงแต่จะได้รับ Zeny เนื่องจากคุณมี Zeny ไม่พอ");
 		}
 		else{
@@ -406,7 +406,7 @@ function	script	Refiner	{
 			
 			//[PAY REFINE COST]
 			if(!.@isAutomatic && !.@sumNinjaPerk)
-			callfunc("UseMyZenySR",callfunc("GetRefinePrice"));
+			callfunc("UseZenySR",callfunc("GetRefinePrice"));
 			
 			//[SUCCESS REFINE]
 			if(perkStarGladiator
@@ -542,31 +542,31 @@ function	script	Refiner	{
 				}
 				
 				//[EARNING]
-				callfunc("AddMyZenySR", callfunc("GetRefineEarning"));
+				callfunc("AddZenySR", callfunc("GetRefineEarning"));
 				if(Perk4 > 0 && rand(1,100 <= (Perk4 / 2))){
 					callfunc("Dispbottom","Double Earning!!");
-					callfunc("AddMyZenySR", callfunc("GetRefineEarning"));
+					callfunc("AddZenySR", callfunc("GetRefineEarning"));
 				}
 				
 				//Merchant
 				if(Class == 5){
 					callfunc("Dispbottom","Merchant!!");
-					callfunc("AddMyZenySR", callfunc("GetRefineEarning"));
+					callfunc("AddZenySR", callfunc("GetRefineEarning"));
 				}
 				//Blacksmith
 				else if(Class == 10){
 					callfunc("Dispbottom","Blacksmith!!");
-					callfunc("AddMyZenySR", callfunc("GetRefineEarning") * 2);
+					callfunc("AddZenySR", callfunc("GetRefineEarning") * 2);
 				}
 				//Whitesmith
 				else if(Class == 4011){
 					callfunc("Dispbottom","Whitesmith!!");
-					callfunc("AddMyZenySR", callfunc("GetRefineEarning") * 3);
+					callfunc("AddZenySR", callfunc("GetRefineEarning") * 3);
 				}
 				//Mechanic
 				else if(Class == 4064){
 					callfunc("Dispbottom","Mechanic!!");
-					callfunc("AddMyZenySR", callfunc("GetRefineEarning") * 5);
+					callfunc("AddZenySR", callfunc("GetRefineEarning") * 5);
 				}
 				
 				//Gunslinger
@@ -594,13 +594,13 @@ function	script	Refiner	{
 				if(perkSage > 0){
 					//Sage
 					if(Class == 16)
-					callfunc("AddMyZenySR", callfunc("GetRefinePrice"));
+					callfunc("AddZenySR", callfunc("GetRefinePrice"));
 					//Sage
 					if(Class == 4017)
-					callfunc("AddMyZenySR", callfunc("GetRefinePrice") * 2);
+					callfunc("AddZenySR", callfunc("GetRefinePrice") * 2);
 					//Sage
 					if(Class == 4074)
-					callfunc("AddMyZenySR", callfunc("GetRefinePrice") * 3);
+					callfunc("AddZenySR", callfunc("GetRefinePrice") * 3);
 					perkSage = 0;
 				}
 				
@@ -633,7 +633,7 @@ function	script	Refiner	{
 					if(perkAcolyte>=10){
 						callfunc("Dispbottom","Acolyte!!");
 						callfunc("SetRefineCount",1);
-						callfunc("AddMyZenySR", callfunc("GetRefineEarning"));
+						callfunc("AddZenySR", callfunc("GetRefineEarning"));
 						perkAcolyte = 0;
 					}
 				}
@@ -643,7 +643,7 @@ function	script	Refiner	{
 					if(perkAcolyte>=6){
 						callfunc("Dispbottom","Priest!!");
 						callfunc("SetRefineCount",1);
-						callfunc("AddMyZenySR", callfunc("GetRefineEarning"));
+						callfunc("AddZenySR", callfunc("GetRefineEarning"));
 						perkAcolyte = 0;
 					}
 				}
@@ -653,7 +653,7 @@ function	script	Refiner	{
 					if(perkAcolyte>=4){
 						callfunc("Dispbottom","High Priest!!");
 						callfunc("SetRefineCount",1);
-						callfunc("AddMyZenySR", callfunc("GetRefineEarning"));
+						callfunc("AddZenySR", callfunc("GetRefineEarning"));
 						perkAcolyte = 0;
 					}
 				}
@@ -663,7 +663,7 @@ function	script	Refiner	{
 					if(perkAcolyte>=2){
 						callfunc("Dispbottom","Arch Bishop!!");
 						callfunc("SetRefineCount",1);
-						callfunc("AddMyZenySR", callfunc("GetRefineEarning"));
+						callfunc("AddZenySR", callfunc("GetRefineEarning"));
 						perkAcolyte = 0;
 					}
 				}
@@ -709,7 +709,7 @@ function	script	Refiner	{
 					//Safe Zeny
 					if(Perk2 > 0 && rand(1,100) <= (Perk2 / 2)){
 						callfunc("Dispbottom","Safe Zeny!!");
-						callfunc("AddMyZenySR", callfunc("GetRefinePrice"));
+						callfunc("AddZenySR", callfunc("GetRefinePrice"));
 					}
 					//Safe Refine
 					if(Perk1 > 0 && rand(1,100) <= (Perk1 / 2))
@@ -970,7 +970,7 @@ OnPCLogoutEvent:
 	
 	L_Trade:
 	callfunc("IsCashEnough",.@sumCash,"",1);
-	callfunc("AddMyZenySR",.@sumZeny);
+	callfunc("AddZenySR",.@sumZeny);
 	close;
 	
 OnInit:
@@ -1071,7 +1071,7 @@ OnC:
 	if(!.@isRefineCount){
 		.@bCash = #CASHPOINTS;
 		dispbottom "ก่อนหน้านี้คุณมี: " + callfunc("F_InsertComma",#CASHPOINTS) + " Cash";
-		callfunc("AddMyCash",.@i);
+		callfunc("AddCash",.@i);
 		if(.@noticeAllPlayers)
 		announce "GM ได้เพิ่ม " + callfunc("F_InsertComma",.@i) + " Cash ให้กับ " + $name$[.@s] + " (จาก " + callfunc("F_InsertComma",.@bCash) + " เป็น " + callfunc("F_InsertComma",#CASHPOINTS) + ")",bc_all,0xc99eff;
 		detachrid;

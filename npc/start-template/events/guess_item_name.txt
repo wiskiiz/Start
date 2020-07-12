@@ -44,7 +44,7 @@ prontera,112,67,4	script	ทายชื่อ Item	569,{
 		mes "คุณตอบถูก!";
 		announce strcharinfo(0) + " ตอบคำถามประจำชั่วโมงถูก ได้รับ 1 Cash และคำตอบที่ถูกคือ: " + $answerQuestionCash$,bc_all,0xc99eff;
 		
-		callfunc("AddMyCash",1);
+		callfunc("AddCash",1);
 		
 		$winnerQuestionCash = 1;
 		$winnerQuestionCash$ = strcharinfo(0);

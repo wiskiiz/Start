@@ -7,7 +7,7 @@ prontera,112,61,4	script	หมีเล่นหวย	505,{
 	if(strcharinfo(0) == $winnerLottoCash$){
 		announce "มีคนถูกหวย: " + strcharinfo(0) + " | ได้รับ 30 Cash",bc_all,0xc99eff;
 		
-		callfunc("AddMyCash",30);
+		callfunc("AddCash",30);
 		callfunc("MyCash",1);
 		
 		$winnerLottoCash$ = "-";
@@ -41,8 +41,6 @@ prontera,112,61,4	script	หมีเล่นหวย	505,{
 		clear;
 		mes .@npcName$;
 		mes "โปรดรอต้นชั่วโมงเพื่อลุ้นรับรางวัล";
-		
-		callfunc("MyCash",0);
 		
 		close;
 	}

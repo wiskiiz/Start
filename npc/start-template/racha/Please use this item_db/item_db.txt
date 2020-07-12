@@ -4,13 +4,13 @@
 502,Random_,Random,4,,,0,,,1,1,0xFFFFFFFF,63,2,16,4,,1,,{},{},{}
 503,Portal_Crystal,Portal Crystal,11,,,0,,,1,1,0xFFFFFFFF,63,2,,4,,1,,{ specialeffect2 54; callfunc("Warper"); },{},{}
 504,RACHA_Crystal_Pack,RACHA Crystal Pack,11,,,0,,,1,1,0xFFFFFFFF,63,2,,4,,1,,{ if(strcharinfo(3)=="prt_lib_q"||strcharinfo(3)=="new_5-4"){ message strcharinfo(0),"ไม่สามารถเปิดที่เขตฝึกฝนได้"; end; } if(countitem(7578)>=29000){ message strcharinfo(0),"คุณมี RACHA Crystal ในช่องเก็บของมากเกินไป"; end; } else getitem 7578,1000; delitem 504,1; specialeffect2 91; },{},{}
-505,50_Cash_Card,50 Cash Card,11,,,0,,,1,1,0xFFFFFFFF,63,2,,4,,1,,{ callfunc("MyCash",0); callfunc("AddMyCash",50); delitem 505,1; },{},{}
+505,50_Cash_Card,50 Cash Card,11,,,0,,,1,1,0xFFFFFFFF,63,2,,4,,1,,{ callfunc("MyCash",0); callfunc("AddCash",50); delitem 505,1; },{},{}
 506,1_Card_Pack,Card Pack,11,,,0,,,1,1,0xFFFFFFFF,63,2,,4,,1,,{ callfunc("InventorySlotCheck"); callfunc("Gachapon",1); delitem 506,1; },{},{}
 507,5_Card_Pack,5 Card Pack,11,,,0,,,1,1,0xFFFFFFFF,63,2,,4,,1,,{ callfunc("InventorySlotCheck"); for(.@i=0;.@i<5;.@i++) callfunc("Gachapon",1); delitem 507,1; },{},{}
 508,Yellow_Herb,10 Card Pack,11,,,0,,,1,1,0xFFFFFFFF,63,2,,4,,1,,{ callfunc("InventorySlotCheck"); for(.@i=0;.@i<10;.@i++) callfunc("Gachapon",1); delitem 508,1; },{},{}
 509,Tracking_Crystal,Tracking Crystal,11,,,0,,,1,1,0xFFFFFFFF,63,2,,4,,1,,{ atcommand "@who3"; sc_start SC_BOSSMAPINFO,6000,0; delitem 509,1; },{},{}
 510,Fasion_Zone_Pass_Card,Fasion Zone Pass Card,3,,,0,,,1,1,0xFFFFFFFF,63,2,,4,,1,,{},{},{}
-671,Zeny_Coin,Zeny Coin,2,,,0,,,1,1,0xFFFFFFFF,63,2,,4,,1,,{ callfunc("MyZeny",0); .@i = 671; callfunc("AddMyZeny",countitem(.@i) + 1); delitem .@i,countitem(.@i); },{},{}
+671,Zeny_Coin,Zeny Coin,2,,,0,,,1,1,0xFFFFFFFF,63,2,,4,,1,,{ callfunc("MyZeny",0); .@i = 671; callfunc("AddZeny",countitem(.@i) + 1); delitem .@i,countitem(.@i); },{},{}
 1101,Sword,Sword,5,,,0,50,,1,1,0xFFFFFFFF,63,2,2,4,,1,2,{ bonus bHPGainValue,5; },{},{}
 1102,Prontera_Sword,Prontera Sword,5,,,0,100,,1,1,0xFFFFFFFF,63,2,2,4,,1,2,{ bonus bAllStats,1; },{},{}
 1103,(N)Prontera_Sword,(N)Prontera Sword,5,,,0,200,,1,1,0xFFFFFFFF,63,2,2,4,,1,2,{ bonus bAllStats,2; },{},{}

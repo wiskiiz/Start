@@ -60,7 +60,7 @@
 	set getd("$freebies" + .@index + "IP$[" + getarraysize(getd("$freebies" + .@index + "IP$")) + "]"),getcharip();
 	
 	if(.@index == 1)
-		callfunc("AddMyZeny",10000000);
+		callfunc("AddZeny",10000000);
 	
 	specialeffect2 400;
 	

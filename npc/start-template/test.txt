@@ -1,4 +1,13 @@
 -	script	Test	-1,{
+	callfunc("AddCash",2);
+	callfunc("IsCashEnough",2,"",1);
+	
+	callfunc("AddZeny",200);
+	callfunc("IsZenyEnough",200,"",1);
+	end;
+	
+OnInit:
+	debugmes "---";
 	end;
 }
 
