@@ -752,7 +752,7 @@ prontera,57,72,3	script	 #HomunculusS	10119,{
 	}
 }
 
-prontera,140,144,5	script	 #Storage	10005,{
+/*prontera,140,144,5	script	 #Storage	10005,{
 	specialeffect2 65;
 	if(getcharid(2) > 0)
 	menu "เปิดคลังปกติ",L_NM,"เปิดคลังกิลด์",L_GS;
@@ -766,9 +766,9 @@ prontera,140,144,5	script	 #Storage	10005,{
 	L_GS:
 	guildopenstorage();
 	end;
-}
+}*/
 
-prontera,162,127,3	script	 #Freebies	10095,{
+/*prontera,162,127,3	script	 #Freebies	10095,{
 	.@npcName$ = "[แจกของชดเชย, แจกของวันพิเศษ]";
 	mes .@npcName$;
 	if(getgmlevel())
@@ -853,7 +853,7 @@ prontera,162,127,3	script	 #Freebies	10095,{
 	mes .@npcName$;
 	mes "ล้างค่า เรียบร้อยแล้ว";
 	close;
-}
+}*/
 
 prontera,164,150,3	script	 #CheckBonus	10181,{
 	freeloop(1);
