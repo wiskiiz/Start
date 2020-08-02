@@ -141,6 +141,7 @@ prontera,156,144,0	script	เงื่อนไขเขียนอีกแบบ#02	54,{
 	end;
 }
 
+
 //• ศึกษาเพิ่มเติม \doc\script_commands.txt บรรทัด 430
 //• ศึกษาเพิ่มเติม \doc\script_commands.txt บรรทัด 668
 //• ศึกษาเพิ่มเติม \doc\script_commands.txt บรรทัด 1180

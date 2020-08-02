@@ -24,4 +24,5 @@ prontera,150,152,0	script	ให้ผู้เล่นกรอกตัวอักษร	54,{
 	close;
 }
 
+
 //• ศึกษาเพิ่มเติม \doc\script_commands.txt บรรทัด 1490
