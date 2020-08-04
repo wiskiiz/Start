@@ -21,7 +21,7 @@ prontera,152,164,0	duplicate(แบบที่ 1)	แบบที่ 1#02	54
 prontera,154,164,0	duplicate(Prayuth)	แบบที่ 2#02	54
 
 prontera,156,164,0	duplicate(แบบที่ 1)	แบบที่ 1#03	54
-prontera,158,164,0	duplicate(Prayuth)	แบบที่ 2#04	54
+prontera,158,164,0	duplicate(Prayuth)	แบบที่ 2#03	54
 
 
 //• ศึกษาเพิ่มเติม \doc\script_commands.txt บรรทัด 229
