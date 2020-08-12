@@ -5845,7 +5845,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case WL_HELLINFERNO:
 		if (flag & 1) {
 			skill_attack(BF_MAGIC, src, src, bl, skill_id, skill_lv, tick, flag);
-			skill_addtimerskill(src, tick + 300, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag | ELE_DARK);
+			skill_addtimerskill(src, tick + 300, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag | 2);
 		} else {
 			clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
 			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), BL_CHAR, src, skill_id, skill_lv, tick, flag | BCT_ENEMY | SD_SPLASH | 1, skill_castend_damage_id);
@@ -19848,7 +19848,8 @@ bool skill_produce_mix(struct map_session_data *sd, uint16 skill_id, t_itemid na
 	}
 
 	for (i = 0; i < MAX_PRODUCE_RESOURCE; i++) {
-		short id, x, j;
+		short x, j;
+		t_itemid id;
 
 		if (!(id = skill_produce_db[idx].mat_id[i]) || !itemdb_exists(id))
 			continue;
@@ -22683,7 +22684,7 @@ uint64 ReadingSpellbookDatabase::parseBodyNode(const YAML::Node &node) {
  * @return Spell data or nullptr otherwise
  */
 std::shared_ptr<s_skill_spellbook_db> ReadingSpellbookDatabase::findBook(t_itemid nameid) {
-	if (nameid < 1 || !itemdb_exists(nameid) || reading_spellbook_db.size() == 0)
+	if (nameid == 0 || !itemdb_exists(nameid) || reading_spellbook_db.size() == 0)
 		return nullptr;
 
 	for (const auto &spell : reading_spellbook_db) {
