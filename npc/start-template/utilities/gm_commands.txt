@@ -15,6 +15,8 @@ OnJob2:
 	atcommand "@joblvup 999";
 	atcommand "@statall";
 	atcommand "@skillall";
-	atcommand "@stpoint -99999";
+	StatusPoint = 0;
+	percentheal 100,100;
+	callfunc("F_GetPlatinumSkills");
 	end;
 }
