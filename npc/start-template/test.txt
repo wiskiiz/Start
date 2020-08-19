@@ -1,0 +1,14 @@
+-	script	Test	-1,{
+	callfunc("AddCash",2);
+	callfunc("IsCashEnough",2,"",1);
+	
+	callfunc("AddZeny",200);
+	callfunc("IsZenyEnough",200,"",1);
+	end;
+	
+OnInit:
+	debugmes "---";
+	end;
+}
+
+prontera,158,181,5	duplicate(Test)	Test#2	909
