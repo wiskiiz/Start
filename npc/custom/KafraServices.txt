@@ -3,7 +3,7 @@
 // - Script City : Thailand 
 // - Script Support Server : Hercules & rAthena
 //==============================================
--	script	KafraServices::Kafra	-1,{
+-	script	KafraServices::KFSV	-1,{
 
 mes "[ Kafra ]";
 mes "ยินดีต้อนรับ : ^FF0000 "+strcharinfo(0)+" ^000000"; 
@@ -327,9 +327,4 @@ close;
 end;
 }
 /////////////////////////
-morocc,155,97,4	duplicate(Kafra)	คาเฟ่เซอร์วิส#01	861
-izlude,126,251,4	duplicate(Kafra)	คาเฟ่เซอร์วิส#02	861
-izlude,95,168,4	duplicate(Kafra)	คาเฟ่เซอร์วิส#03	861
-izlude,48,104,4	duplicate(Kafra)	คาเฟ่เซอร์วิส#04	861
-izlude,52,169,4	duplicate(Kafra)	คาเฟ่เซอร์วิส#05	861
-izlude,205,172,4	duplicate(Kafra)	คาเฟ่เซอร์วิส#06	861
+morocc,155,97,4	duplicate(KFSV)	คาเฟ่เซอร์วิส#01	861

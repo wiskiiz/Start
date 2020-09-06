@@ -1,0 +1,69 @@
+//==============================================
+// - Script By : M-Ro Online
+// - Script City : Thailand 
+// - Script Support Server : Hercules & rAthena
+//==============================================
+-	script	PvP	-1,{
+
+mes "สวัสดีคุณ :^FF0000 "+strcharinfo(0)+" ^000000 ";
+mes "ต้องการเข้าสู่สนามประลอง";
+mes "เพื่อทดสอบฝีมือของคุณไหม";
+menu 
+"Death Match [ "+getmapusers("guild_vs3")+"/100 ]",Mm_pvp01,
+"Izlude [ "+getmapusers("pvp_y_8-2")+"/100 ]",Mm_pvp02,
+"Prontera [ "+getmapusers("pvp_y_8-1")+"/100 ]",Mm_pvp03,
+"1 VS 1 [ "+getmapusers("pvp_n_1-3")+"/2 ]",Mm_pvp04,
+"ออก ",Lcancel;
+
+Mm_pvp01:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("guild_vs3")>= 100) goto MaxPlayerRoom;
+warp "guild_vs3",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่สนามประลอง Death Match แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("guild_vs3")+"/100 ] คน",0;
+close;
+
+Mm_pvp02:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("pvp_y_8-2")>= 100) goto MaxPlayerRoom;
+warp "pvp_y_8-2",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่สนามประลอง Izlude แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("pvp_y_8-2")+"/100 ] คน",0;
+close;
+
+Mm_pvp03:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("pvp_y_8-1")>= 100) goto MaxPlayerRoom;
+warp "pvp_y_8-1",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่สนามประลอง Prontera แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("pvp_y_8-1")+"/100 ] คน",0;
+close;
+
+Mm_pvp04:
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+if (getmapusers("pvp_n_1-3")>= 2) goto MaxPlayerRoom;
+warp "pvp_n_1-3",0,0;
+announce "[ระบบ] ขณะนี้ คุณ [ "+strcharinfo(0)+" ] ได้เข้าสู่สนามประลอง 1 VS 1 แล้วจ้า ขณะนี้มีผู้เล่นทั้งหมด [ "+getmapusers("pvp_n_1-3")+"/100 ] คน",0;
+close;
+
+MaxPlayerRoom:
+mes "ขณะนี้สนามประลองเต็ม";
+close;
+
+Lcancel:
+close;
+OnInit:
+do {
+delwaitingroom;
+waitingroom "ผู้เล่นในห้อง " +getmapusers("guild_vs3")+ " คน",0;
+sleep 1000; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+morocc,168,97,4	duplicate(PvP)	PvP Officer#pron_1	469
+
+guild_vs3	mapflag	nocommand	90
+pvp_y_8-2	mapflag	nocommand	90
+pvp_y_8-1	mapflag	nocommand	90
+pvp_n_1-3	mapflag	nocommand	90

@@ -3,3 +3,4 @@
 // Structure of Database:
 // ID:ID:ID:ID,{ Script }
 
+24000:24001:24002:24003:24004:24005,{ bonus2 bAddClass,Class_Boss,70; bonus2 bMagicAddClass,Class_Boss,70; bonus bBaseAtk,400; bonus bMatk,400; bonus bMaxHPrate,35; }

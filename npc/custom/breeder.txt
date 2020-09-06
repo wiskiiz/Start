@@ -10,7 +10,7 @@
 //= One-click automatic mount rentals.
 //============================================================
 
-prontera,148,175,5	script	เช่าอุปกรณ์	10351,{
+morocc,150,108,5	script	เช่าอุปกรณ์	10351,{
 	if (ismounting()) {
 		message strcharinfo(0),"ต้องถอดอุปกรณ์เก่าออกก่อน";
 		end;

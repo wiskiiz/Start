@@ -526,7 +526,7 @@ prt_in,63,60,0	script	Hollgrehenn	85,{
 	callfunc "refinemain","Hollgrehenn",0;
 	end;
 }
-morocc_in,73,38,6	script	Aragham	99,{
+morocc,124,81,6	script	µÕ+	99,{
 	callfunc "refinemain","Aragham",0;
 	end;
 }

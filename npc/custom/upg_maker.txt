@@ -1,0 +1,625 @@
+//===== rAthena Script =======================================
+//= Stojan upg items maker :: ทำของทอง
+//===== By: ================================================== 
+//= mr.TAURUS
+//===== Current Version: ===================================== 
+//= 2.1
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//============================================================
+
+morocc,120,100,6	script	Upgrade	4_M_02,{
+
+OnTalk:
+	mes .heading$;
+	mes "สวัสดี, ^0000FF"+ strcharinfo(0) +"^000000.";
+	mes "ข้าสามารถสร้างไอเท็มที่ทำจากทองคำ";
+	mes "โดยมีอัตราสำเร็จอยู่ที่ ^FF0000"+.SuccessRate+"^000000%";
+	mes "และมีค่าใช้จ่าย ^FF0000"+.Price+"^000000 zeny.";
+	mes "เจ้าสนใจไหมล่ะ?";
+	next;
+	switch(select("• สนใจ ! :• ไม่สนใจ")) 
+	{
+		case 1:
+			mes .heading$;
+			mes "เลือกสิ่งที่เจ้าต้องการจะสร้าง";
+			next;
+			switch(select(
+				"• Upgrade Adventure Suit ",	//case 1
+				"• Upgrade Coat ",				//case 2
+				"• Upgrade Mail ",				//case 3
+				"• Upgrade Saint's Robe ",		//case 4
+				"• Upgrade Thief Clothes ",		//case 5
+				"• Upgrade Clip"				//case 6
+						))				
+			{
+				case 1:
+					mes .heading$;
+					mes "การสร้าง ^0000FFUpgrade Adventure Suit^000000 ";
+					mes "จำเป็นต้องใช้ :";
+					mes ""+getitemname(2306)+"[1] : 1 ea.";
+					mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+					mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+					mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+					mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+					mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+					mes ""+(.Price)+" zeny.";
+					mes "ต้องการดำเนินการต่อหรือไม่?";
+					next;
+					switch(select("• ดำเนินการต่อ ")) 
+					{
+						case 1:
+							if (countitem(2306) == 0) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+getitemname(2306)+"[1] : 1 ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem1) < .ItemReq1) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem2) < .ItemReq2) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem3) < .ItemReq3) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem4) < .ItemReq4) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem5) < .ItemReq5) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (Zeny < .Price) {
+								mes .heading$;
+								mes "เจ้ามีเงินไม่เพียงพอ";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							mes .heading$;
+							mes "ก๊อง...ก๊อง...ก๊อง...";
+							delitem 2306,1;
+							delitem .FixItem1,.ItemReq1;
+							delitem .FixItem2,.ItemReq2;
+							delitem .FixItem3,.ItemReq3;
+							delitem .FixItem4,.ItemReq4;
+							delitem .FixItem5,.ItemReq5;
+							set zeny,zeny-(.Price);
+							if (rand(1,100) < .SuccessRate) {
+								next;
+								specialeffect2 154;
+								specialeffect 18;
+								getitem 15015,1;
+								mes .heading$;
+								mes "สำเร็จ...!!";
+								mes "ยินดีด้วย เจ้าได้รับ :";
+								mes "Upgrade Adventure Suit : 1 ea.";
+								close;
+							}
+							else {
+								next;
+								specialeffect2 155;
+								mes .heading$;
+								mes "ล้มเหลว...!!";
+								mes "เสียใจด้วย ดูเหมือนเจ้าจะดวงไม่ดีเลยนะ.";
+								close;
+							}
+							end;
+					}
+				case 2:
+					mes .heading$;
+					mes "การสร้าง ^0000FFUpgrade Coat^000000 ";
+					mes "จำเป็นต้องใช้ :";
+					mes ""+getitemname(2310)+"[1] : 1 ea.";
+					mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+					mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+					mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+					mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+					mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+					mes ""+(.Price)+" zeny.";
+					mes "ต้องการดำเนินการต่อหรือไม่?";
+					next;
+					switch(select("• ดำเนินการต่อ ")) 
+					{
+						case 1:
+							if (countitem(2310) == 0) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+getitemname(2310)+"[1] : 1 ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem1) < .ItemReq1) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem2) < .ItemReq2) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem3) < .ItemReq3) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem4) < .ItemReq4) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem5) < .ItemReq5) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (Zeny < .Price) {
+								mes .heading$;
+								mes "เจ้ามีเงินไม่เพียงพอ";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							mes .heading$;
+							mes "ก๊อง...ก๊อง...ก๊อง...";
+							delitem 2310,1;
+							delitem .FixItem1,.ItemReq1;
+							delitem .FixItem2,.ItemReq2;
+							delitem .FixItem3,.ItemReq3;
+							delitem .FixItem4,.ItemReq4;
+							delitem .FixItem5,.ItemReq5;
+							set zeny,zeny-(.Price);
+							if (rand(1,100) < .SuccessRate) {
+								next;
+								specialeffect2 154;
+								specialeffect 18;
+								getitem 15016,1;
+								mes .heading$;
+								mes "สำเร็จ...!!";
+								mes "ยินดีด้วย เจ้าได้รับ :";
+								mes "Upgrade Coat : 1 ea.";
+								close;
+							}
+							else {
+								next;
+								specialeffect2 155;
+								mes .heading$;
+								mes "ล้มเหลว...!!";
+								mes "เสียใจด้วย ดูเหมือนเจ้าจะดวงไม่ดีเลยนะ.";
+								close;
+							}
+							end;
+					}	
+				case 3:
+					mes .heading$;
+					mes "การสร้าง ^0000FFUpgrade Mail^000000 ";
+					mes "จำเป็นต้องใช้ :";
+					mes ""+getitemname(2315)+"[1] : 1 ea.";
+					mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+					mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+					mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+					mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+					mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+					mes ""+(.Price)+" zeny.";
+					mes "ต้องการดำเนินการต่อหรือไม่?";
+					next;
+					switch(select("• ดำเนินการต่อ ")) 
+					{
+						case 1:
+							if (countitem(2315) == 0) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+getitemname(2315)+"[1] : 1 ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem1) < .ItemReq1) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem2) < .ItemReq2) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem3) < .ItemReq3) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem4) < .ItemReq4) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem5) < .ItemReq5) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (Zeny < .Price) {
+								mes .heading$;
+								mes "เจ้ามีเงินไม่เพียงพอ";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							mes .heading$;
+							mes "ก๊อง...ก๊อง...ก๊อง...";
+							delitem 2315,1;
+							delitem .FixItem1,.ItemReq1;
+							delitem .FixItem2,.ItemReq2;
+							delitem .FixItem3,.ItemReq3;
+							delitem .FixItem4,.ItemReq4;
+							delitem .FixItem5,.ItemReq5;
+							set zeny,zeny-(.Price);
+							if (rand(1,100) < .SuccessRate) {
+								next;
+								specialeffect2 154;
+								specialeffect 18;
+								getitem 15020,1;
+								mes .heading$;
+								mes "สำเร็จ...!!";
+								mes "ยินดีด้วย เจ้าได้รับ :";
+								mes "Upgrade Mail : 1 ea.";
+								close;
+							}
+							else {
+								next;
+								specialeffect2 155;
+								mes .heading$;
+								mes "ล้มเหลว...!!";
+								mes "เสียใจด้วย ดูเหมือนเจ้าจะดวงไม่ดีเลยนะ.";
+								close;
+							}
+							end;
+					}
+				case 4:
+					mes .heading$;
+					mes "การสร้าง ^0000FFUpgrade Saint's Robe^000000 ";
+					mes "จำเป็นต้องใช้ :";
+					mes ""+getitemname(2326)+"[1] : 1 ea.";
+					mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+					mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+					mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+					mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+					mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+					mes ""+(.Price)+" zeny.";
+					mes "ต้องการดำเนินการต่อหรือไม่?";
+					next;
+					switch(select("• ดำเนินการต่อ ")) 
+					{
+						case 1:
+							if (countitem(2326) == 0) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+getitemname(2326)+"[1] : 1 ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem1) < .ItemReq1) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem2) < .ItemReq2) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem3) < .ItemReq3) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem4) < .ItemReq4) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem5) < .ItemReq5) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (Zeny < .Price) {
+								mes .heading$;
+								mes "เจ้ามีเงินไม่เพียงพอ";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							mes .heading$;
+							mes "ก๊อง...ก๊อง...ก๊อง...";
+							delitem 2326,1;
+							delitem .FixItem1,.ItemReq1;
+							delitem .FixItem2,.ItemReq2;
+							delitem .FixItem3,.ItemReq3;
+							delitem .FixItem4,.ItemReq4;
+							delitem .FixItem5,.ItemReq5;
+							set zeny,zeny-(.Price);
+							if (rand(1,100) < .SuccessRate) {
+								next;
+								specialeffect2 154;
+								specialeffect 18;
+								getitem 15017,1;
+								mes .heading$;
+								mes "สำเร็จ...!!";
+								mes "ยินดีด้วย เจ้าได้รับ :";
+								mes "Upgrade Saint's Robe : 1 ea.";
+								close;
+							}
+							else {
+								next;
+								specialeffect2 155;
+								mes .heading$;
+								mes "ล้มเหลว...!!";
+								mes "เสียใจด้วย ดูเหมือนเจ้าจะดวงไม่ดีเลยนะ.";
+								close;
+							}
+							end;
+					}
+				case 5:
+					mes .heading$;
+					mes "การสร้าง ^0000FFUpgrade Thief Clothes^000000 ";
+					mes "จำเป็นต้องใช้ :";
+					mes ""+getitemname(2336)+"[1] : 1 ea.";
+					mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+					mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+					mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+					mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+					mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+					mes ""+(.Price)+" zeny.";
+					mes "ต้องการดำเนินการต่อหรือไม่?";
+					next;
+					switch(select("• ดำเนินการต่อ ")) 
+					{
+						case 1:
+							if (countitem(2336) == 0) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+getitemname(2336)+"[1] : 1 ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem1) < .ItemReq1) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem2) < .ItemReq2) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem3) < .ItemReq3) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem4) < .ItemReq4) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem5) < .ItemReq5) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (Zeny < .Price) {
+								mes .heading$;
+								mes "เจ้ามีเงินไม่เพียงพอ";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							mes .heading$;
+							mes "ก๊อง...ก๊อง...ก๊อง...";
+							delitem 2336,1;
+							delitem .FixItem1,.ItemReq1;
+							delitem .FixItem2,.ItemReq2;
+							delitem .FixItem3,.ItemReq3;
+							delitem .FixItem4,.ItemReq4;
+							delitem .FixItem5,.ItemReq5;
+							set zeny,zeny-(.Price);
+							if (rand(1,100) < .SuccessRate) {
+								next;
+								specialeffect2 154;
+								specialeffect 18;
+								getitem 15019,1;
+								mes .heading$;
+								mes "สำเร็จ...!!";
+								mes "ยินดีด้วย เจ้าได้รับ :";
+								mes "Upgrade Thief Clothes : 1 ea.";
+								close;
+							}
+							else {
+								next;
+								specialeffect2 155;
+								mes .heading$;
+								mes "ล้มเหลว...!!";
+								mes "เสียใจด้วย ดูเหมือนเจ้าจะดวงไม่ดีเลยนะ.";
+								close;
+							}
+							end;
+					}
+				case 6:
+					mes .heading$;
+					mes "การสร้าง ^0000FFUpgrade Clip^000000 ";
+					mes "จำเป็นต้องใช้ :";
+					mes ""+getitemname(2607)+"[1] : 1 ea.";
+					mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+					mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+					mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+					mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+					mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+					mes ""+(.Price)+" zeny.";
+					mes "ต้องการดำเนินการต่อหรือไม่?";
+					next;
+					switch(select("• ดำเนินการต่อ ")) 
+					{
+						case 1:
+							if (countitem(2607) == 0) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+getitemname(2607)+"[1] : 1 ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem1) < .ItemReq1) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem1) +" : "+(.ItemReq1)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem2) < .ItemReq2) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem2) +" : "+(.ItemReq2)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem3) < .ItemReq3) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem3) +" : "+(.ItemReq3)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem4) < .ItemReq4) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem4) +" : "+(.ItemReq4)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							if (countitem(.FixItem5) < .ItemReq5) {
+								mes .heading$;
+								mes "เจ้ายังไม่มีไอเท็ม :";
+								mes ""+ getitemname (.FixItem5) +" : "+(.ItemReq5)+" ea.";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;	
+							}
+							if (Zeny < .Price) {
+								mes .heading$;
+								mes "เจ้ามีเงินไม่เพียงพอ";
+								mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+								close;
+							}
+							mes .heading$;
+							mes "ก๊อง...ก๊อง...ก๊อง...";
+							delitem 2607,1;
+							delitem .FixItem1,.ItemReq1;
+							delitem .FixItem2,.ItemReq2;
+							delitem .FixItem3,.ItemReq3;
+							delitem .FixItem4,.ItemReq4;
+							delitem .FixItem5,.ItemReq5;
+							set zeny,zeny-(.Price);
+							set .rand,rand(1,100);
+							if (rand(1,100) < .SuccessRate) {
+								next;
+								specialeffect2 154;
+								specialeffect 18;
+								getitem 2828,1;
+								mes .heading$;
+								mes "สำเร็จ...!!";
+								mes "ยินดีด้วย เจ้าได้รับ :";
+								mes "Upgrade Clip : 1 ea.";
+								close;
+							}
+							else {
+								next;
+								specialeffect2 155;
+								mes .heading$;
+								mes "ล้มเหลว...!!";
+								mes "เสียใจด้วย ดูเหมือนเจ้าจะดวงไม่ดีเลยนะ.";
+								close;
+							}
+							end;
+					}	
+			}
+		case 2:
+			mes .heading$;
+			mes "ไว้พบกันใหม่.";
+			close;
+	}
+	end;
+		
+OnInit:
+	.heading$ = "[^FF7F00 Upgrade ^000000]";		
+	.Price = 500000;		// ราคา
+	.FixItem1 = 984;		// ไอเท็มจำเป็น 1
+	.ItemReq1 = 10;			// จำนวนไอเท็มจำเป็น 1
+	.FixItem2 = 985;		// ไอเท็มจำเป็น 2
+	.ItemReq2 = 10;			// จำนวนไอเท็มจำเป็น 2	
+	.FixItem3 = 969;		// ไอเท็มจำเป็น 3	
+	.ItemReq3 = 1;			// จำนวนไอเท็มจำเป็น 3
+	.FixItem4 = 501;		// ไอเท็มจำเป็น 3	
+	.ItemReq4 = 1;			// จำนวนไอเท็มจำเป็น 3
+	.FixItem5 = 500;		// ไอเท็มจำเป็น 3	
+	.ItemReq5 = 1;			// จำนวนไอเท็มจำเป็น 3
+	.SuccessRate = 70;		// อัตราสำเร็จ :: ปกติ 70%
+	waitingroom "ทำของทอง",0; 
+	end;
+}
